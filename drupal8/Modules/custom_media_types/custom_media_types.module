@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains hook implementations relevant for Custom Media sources.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function custom_media_types_theme($existing, $type, $theme, $path) {
+  return [
+    'media_art19' => [
+      'variables' => [
+        'source_id' => NULL,
+        'background_color' => NULL,
+        'shadow' => NULL,
+        'progress_color' => NULL,
+        'primary_color' => NULL,
+        'allow_share' => NULL,
+        'allow_subscribe' => NULL,
+        'allow_download' => NULL,
+      ],
+    ],
+    'media_kaltura_embed' => [
+      'variables' => [
+        'playerId' => NULL,
+        'partnerId' => NULL,
+        'entryId' => NULL,
+        'uiConfId' => NULL,
+        'flashVars' => NULL,
+        'width' => NULL,
+        'height' => NULL,
+      ],
+      'file' => 'custom_media_types.theme.inc',
+    ],
+  ];
+
+}

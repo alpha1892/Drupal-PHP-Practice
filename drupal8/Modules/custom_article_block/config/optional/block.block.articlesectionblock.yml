@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - custom_article_block
+    - node
+  theme:
+    - bartik
+id: articlesectionblock
+theme: bartik
+region: sidebar_first
+weight: 0
+provider: null
+plugin: article_section_block
+settings:
+  id: article_section_block
+  label: 'Article Section Block'
+  provider: custom_article_block
+  label_display: '0'
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      article: article
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

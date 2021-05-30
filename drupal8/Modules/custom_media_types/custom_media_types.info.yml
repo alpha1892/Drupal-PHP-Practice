@@ -1,0 +1,6 @@
+name: Custom Media Types
+description: Custom Media types in use with GSB.
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: alpha
+type: module

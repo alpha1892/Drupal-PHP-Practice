@@ -1,0 +1,6 @@
+name: Custom Article Block
+description : 'Article block features.'
+type: module
+package: QED42
+core: 8.x
+core_version_requirement: ^8 || ^9

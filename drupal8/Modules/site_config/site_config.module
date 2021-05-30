@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file 
+ * To alter basic site information.
+ */
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function site_config_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $config = \Drupal::service('config.factory')->getEditable('system.site');
+  if ($form_id == 'system_site_information_settings') {
+    $form['site_information']['site_api_key'] = [
+      '#type' => 'textfield',
+      '#title' => t('Site API Key'),
+      '#size' => 60,
+      '#default_value' => !empty($config->get('site_api_key')) ?
+        $config->get('site_api_key') : t('No API Key yet'),
+    ];
+    // Add a custom submit handler to save the array of types back to config file.
+    $form['actions']['submit']['#value'] = t('Update Configuration');
+    $form['actions']['submit']['#submit'][] = 'site_config_update_key_submit';
+  }
+}
+
+/**
+ * Custom handler to update the site config.
+ */
+function site_config_update_key_submit(array $form, FormStateInterface $form_state) {
+  $config = \Drupal::service('config.factory')->getEditable('system.site');
+  $config->set('site_api_key', $form_state->getValue('site_api_key'))->save();
+}

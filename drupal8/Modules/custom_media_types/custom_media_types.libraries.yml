@@ -1,0 +1,12 @@
+art19_webp:
+  version: latest
+  js:
+    https://web-player.art19.com/assets/current.js: { type: external }
+  css:
+    theme:
+      https://web-player.art19.com/assets/current.css: { type: external }
+
+responsive-video:
+  css:
+    component:
+      css/custom_oembed.responsive-video.css: {}

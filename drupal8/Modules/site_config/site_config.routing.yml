@@ -1,0 +1,7 @@
+site_config.json_data:
+  path: '/page_json/{key}/{nid}'
+  defaults:
+    _controller: '\Drupal\site_config\Controller\SiteConfigController::retrieveJsonData'
+    _title: 'Node Json Data'
+  requirements:
+    _permission: 'access content'

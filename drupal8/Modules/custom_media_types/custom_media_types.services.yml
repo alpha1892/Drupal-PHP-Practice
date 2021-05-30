@@ -1,0 +1,4 @@
+services:
+  custom_media_types.video_duration:
+   class: Drupal\custom_media_types\VideoDuration
+   arguments: ['@entity_type.manager', '@config.factory', '@http_client', '@cache.data', '@language_manager']

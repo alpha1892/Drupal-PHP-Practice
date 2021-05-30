@@ -1,0 +1,97 @@
+id: xml_source_articles
+label: 'Article migration for local XML source'
+source:
+  # We use the XML data parser plugin.
+  constants:
+    TITLE_SUFFIX: ' (Imported from local file)'
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: xml
+  urls: 
+    - modules/custom/xml_migration/sources/articles.xml
+  # The XPath to use to query the desired elements.
+  item_selector: /articles/article
+  # Under 'fields', we list the data items to be imported. The first level keys 
+  # are the source field names we want to populate (the names to be used as 
+  # sources in the process configuration below. For each field, we're importing,
+  # we provide a label (optional - this is for display in migration tools) and
+  # an XPath for retrieving that value. This XPath is relative to the elements 
+  # retrieved by item_selector.
+  fields:
+    - name: src_id
+      label: 'Article ID'
+      selector: id
+    - name: src_user
+      label: 'Author'
+      selector: user
+    - name: src_title
+      label: 'Article Title'
+      selector: title
+    - name: src_description
+      label: 'Description'
+      selector: description
+    - name: src_tags
+      label: 'Tags'
+      selector: tags
+    - name: src_image
+      label: 'Article Image'
+      selector: image
+    - name: src_category
+      label: 'Article Category'
+      selector: categories/category
+    - name: src_created
+      label: 'Created'
+      selector: created
+  # Under 'ids', we identify source fields populated above which will uniquely
+  # identify each imported item. The 'type' makes sure the migration map table 
+  # uses the proper schema type for stored the IDs.
+  ids:
+    src_id:
+      type: integer
+  # Constants can be defined
+process:
+  uid:
+    plugin: migration_lookup
+    migration: xml_source_users
+    source: src_user
+  title: src_title
+  body: src_description
+  field_article_category:
+    plugin: attach_term_entity
+    migrated_type: xml_source_article_category
+    source: src_category
+    no_stub: true
+  field_image/target_id:
+    plugin: migration_lookup
+    migration: xml_source_image
+    source: src_image
+  field_image/alt:
+    plugin: concat
+    source:
+      - constants/PHOTO_DESCRIPTION_PREFIX
+      - src_title
+    delimiter: ' '
+  field_tags:
+    - plugin: skip_on_empty
+      source: src_tags
+      method: process
+    - plugin: explode
+      delimiter: ','
+    - plugin: callback
+      callable: trim
+    - plugin: entity_generate
+      entity_type: taxonomy_term
+      value_key: name
+      bundle_key: vid
+      bundle: tags
+  created: 
+    plugin: date_time_conversion
+    source: src_created
+  changed: '@created'
+destination:
+  plugin: 'entity:node'
+  default_bundle: article
+migration_dependencies:
+  required:
+    - xml_source_article_category
+    - xml_source_users

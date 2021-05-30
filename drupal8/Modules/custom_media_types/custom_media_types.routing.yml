@@ -1,0 +1,19 @@
+oembed_kaltura.kaltura_config:
+  path: '/admin/config/media/kaltura-config'
+  defaults:
+    _form: '\Drupal\custom_media_types\Form\KalturaConfigForm'
+    _title: 'Kaltura Configuration'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+
+youtube_key.yt_config:
+  path: '/admin/config/media/youtube-config'
+  defaults:
+    _form: '\Drupal\custom_media_types\Form\YoutubeApiKeyConfigForm'
+    _title: 'Youtube API Key Configuration'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE

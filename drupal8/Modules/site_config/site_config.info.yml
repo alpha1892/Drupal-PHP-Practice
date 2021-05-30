@@ -1,0 +1,7 @@
+name: Site Config
+type: module
+description: Alter Site configuration.
+core: 8.x
+package: alpha
+
+

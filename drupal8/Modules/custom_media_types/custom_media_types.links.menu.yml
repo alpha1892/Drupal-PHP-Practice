@@ -1,0 +1,13 @@
+custom_media_types.kaltura_config:
+  title: 'Kaltura Configuration'
+  route_name: oembed_kaltura.kaltura_config
+  description: 'Kaltura Configuration'
+  parent: system.admin_config_media
+  weight: 101
+
+custom_media_types.yt_config:
+  title: 'Youtube'
+  route_name: youtube_key.yt_config
+  description: 'Youtube Configuration'
+  parent: system.admin_config_services
+  weight: 0

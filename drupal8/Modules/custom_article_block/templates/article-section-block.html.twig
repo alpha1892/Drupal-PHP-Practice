@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ */
+#}
+<div class="article-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="field--article-section">
+        {% for key, value in articleData %}
+          <div class="field--name-field-category">
+            <h1> {{ key }} </h1>
+          </div>
+         {% for key_b, value_b in value %}
+          {% if key_b == "sameCatSameAauthor" %}
+            <div class="same-category-same-author">
+              <h3> {{ value_b|join(',') }}</h3>
+            </div>
+          {% endif %}
+        {% if key_b == "sameCatDiffAuthor" %}
+             <div class="same-category-diff-author">
+              <h3> {{ value_b|join(',') }}</h3>
+            </div>
+        {% endif %}
+        {% if key_b == "diffCatSameAuthor" %}
+             <div class="diff-category-same-author">
+              <h3> {{ value_b|join(',') }}</h3>
+            </div>
+           {% endif %}
+        {% if key_b == "diffCatDiffAuthor" %}
+             <div class="diff-category-diff-author">
+              <h3> {{ value_b|join(',') }}</h3>
+            </div>
+             {% endif %}
+          {% endfor %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

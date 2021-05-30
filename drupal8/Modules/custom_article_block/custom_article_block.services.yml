@@ -1,0 +1,4 @@
+services:
+  custom_article_block.article:
+   class: Drupal\custom_article_block\Article
+   arguments: ['@database', '@current_user']

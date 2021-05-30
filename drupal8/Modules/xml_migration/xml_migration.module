@@ -1,0 +1,4 @@
+<?php
+/**
+ * @file xml_migration module for using hooks.
+ */

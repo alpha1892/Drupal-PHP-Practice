@@ -1,0 +1,18 @@
+<images>
+  <image>
+    <image_id>1</image_id>
+    <image_url>https://cdn.pixabay.com/photo/2016/01/08/11/57/butterfly-1127666_960_720.jpg</image_url>
+    <image_dimensions>
+      <width>360</width>
+      <height>250</height>
+    </image_dimensions>
+  </image>
+  <image>
+    <image_id>2</image_id>
+    <image_url>https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg</image_url>
+    <image_dimensions>
+      <width>240</width>
+      <height>351</height>
+    </image_dimensions> 
+  </image>
+</images>
